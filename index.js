@@ -10,7 +10,7 @@ const db =
 
 // DB Connection
 mongoose
-  .connect(db)
+  .connect(db, { useNewUrlParser: true })
   .then(() => {
     console.log("MongoDB connected");
   })
@@ -20,6 +20,11 @@ mongoose
 
 // Routes
 app.use("/api/temperature", temperature);
+
+// Host Web
+app.get("/web", function(req, res) {
+  res.sendFile(path.join(__dirname + "/web.html"));
+});
 
 // Listeners
 const port = process.env.PORT || 5000;
