@@ -7,7 +7,7 @@ const Temperature = require("../../models/Temperature");
 // @desc    Get sensor by sensorid
 // @access  Public
 router.get("/sensor/:sensorid/:battery/:temperature/:humidity", (req, res) => {
-  Temperature.findOne({ sensorid: req.params.sensorid })
+  Temperature.findOne({ sensorId: req.params.sensorid })
     .then(temp => {
       let responseCode = 0;
       if (temp.ventState && !temp.ventLastState) {
@@ -23,10 +23,33 @@ router.get("/sensor/:sensorid/:battery/:temperature/:humidity", (req, res) => {
       temp.ventLastState = temp.ventState;
       temp.updatedAt = Date.now();
 
-      temp.save();
-      res.json(responseCode);
+      temp.save().then(temperature => {
+        res.json(responseCode);
+      });
     })
     .catch(err => res.json(0));
+});
+
+// @route   GET api/temperature/create/:sensorid/
+// @desc    Create Temperature
+// @access  Public
+router.get("/create/:sensorid", (req, res) => {
+  const newTemperature = new Temperature({
+    sensorId: req.params.sensorid
+  });
+
+  newTemperature.save().then(temperature => {
+    res.json(temperature);
+  });
+});
+
+// @route   GET api/temperature/getall
+// @desc    Get All Temperatures
+// @access  Public
+router.get("/getall", (req, res) => {
+  Temperature.find()
+    .then(temperature => res.json(temperature))
+    .catch(err => res.status(404).json({ error: "No temp found" }));
 });
 
 module.exports = router;
