@@ -1,0 +1,35 @@
+[
+  {
+    "ventState": false,
+    "ventLastState": true,
+    "_id": "5d49edbc31295e34f8d38034",
+    "sensorId": "1",
+    "updatedAt": "2019-08-06T21:26:36.545Z",
+    "__v": 0,
+    "battery": 10,
+    "humidity": 30,
+    "temperature": 20
+  },
+  {
+    "ventState": false,
+    "ventLastState": false,
+    "_id": "5d49edc031295e34f8d38035",
+    "sensorId": "2",
+    "updatedAt": "2019-08-06T21:15:47.594Z",
+    "__v": 0,
+    "battery": 20,
+    "humidity": 55,
+    "temperature": 30
+  },
+  {
+    "ventState": false,
+    "ventLastState": false,
+    "_id": "5d49edc531295e34f8d38036",
+    "sensorId": "3",
+    "updatedAt": "2019-08-06T21:15:57.646Z",
+    "__v": 0,
+    "battery": 30,
+    "humidity": 70,
+    "temperature": 40
+  }
+]
