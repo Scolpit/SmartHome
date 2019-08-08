@@ -1,35 +1,26 @@
 [
   {
     "ventState": false,
-    "ventLastState": true,
-    "_id": "5d49edbc31295e34f8d38034",
+    "ventLastState": false,
+    "_id": "789654678654678",
     "sensorId": "1",
-    "updatedAt": "2019-08-06T21:26:36.545Z",
+    "name": "sala",
+    "updatedAt": "2019-08-08T11:20:48.122Z",
     "__v": 0,
-    "battery": 10,
-    "humidity": 30,
-    "temperature": 20
+    "battery": 12,
+    "humidity": 13,
+    "temperature": 14
   },
   {
     "ventState": false,
     "ventLastState": false,
-    "_id": "5d49edc031295e34f8d38035",
+    "_id": "5d4c054c3b53ac3100d0c35f",
     "sensorId": "2",
-    "updatedAt": "2019-08-06T21:15:47.594Z",
+    "name": "quarto principal",
+    "updatedAt": "2019-08-08T11:20:48.122Z",
     "__v": 0,
-    "battery": 20,
-    "humidity": 55,
-    "temperature": 30
-  },
-  {
-    "ventState": false,
-    "ventLastState": false,
-    "_id": "5d49edc531295e34f8d38036",
-    "sensorId": "3",
-    "updatedAt": "2019-08-06T21:15:57.646Z",
-    "__v": 0,
-    "battery": 30,
-    "humidity": 70,
-    "temperature": 40
+    "battery": 55,
+    "humidity": 88,
+    "temperature": 77
   }
 ]
