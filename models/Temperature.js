@@ -6,7 +6,7 @@ const TemperatureSchema = new Schema({
   sensorId: { type: String, required: true },
   name: { type: String, required: true },
   updatedAt: { type: Date, default: Date.now },
-  battery: { type: Number, min: 0, max: 100 },
+  battery: { type: Number },
   temperature: { type: Number },
   humidity: { type: Number, min: 0, max: 100 },
   ventState: { type: Boolean, default: false },
