@@ -30,12 +30,13 @@ router.get("/sensor/:sensorid/:battery/:temperature/:humidity", (req, res) => {
     .catch(err => res.json(0));
 });
 
-// @route   GET api/temperature/create/:sensorid/
+// @route   GET api/temperature/create/:sensorid/:name
 // @desc    Create Temperature
 // @access  Public
-router.get("/create/:sensorid", (req, res) => {
+router.get("/create/:sensorid/:name", (req, res) => {
   const newTemperature = new Temperature({
-    sensorId: req.params.sensorid
+    sensorId: req.params.sensorid,
+    name: req.params.name
   });
 
   newTemperature.save().then(temperature => {

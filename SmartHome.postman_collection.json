@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "2ca1d209-0747-4b4a-b22a-c06355f7f3b6",
+		"name": "SmartHome",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "WEB Get All Sensors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{url}}/api/temperature/getall",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"temperature",
+						"getall"
+					]
+				},
+				"description": "GET api/temperature/getall"
+			},
+			"response": []
+		},
+		{
+			"name": "WEB Open or Close Vent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{url}}/api/temperature/sensor/33/55/77/88",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"temperature",
+						"sensor",
+						"33",
+						"55",
+						"77",
+						"88"
+					]
+				},
+				"description": "GET api/temperature/openclosevent/:sensorid/:openclose"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sensor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{url}}/api/temperature/create/33/nuno%20morgado",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"temperature",
+						"create",
+						"33",
+						"nuno%20morgado"
+					]
+				},
+				"description": "GET api/temperature/create/:sensorid/:name"
+			},
+			"response": []
+		},
+		{
+			"name": "ARD Send sensor info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{url}}/api/temperature/sensor/1/40/23/75",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"temperature",
+						"sensor",
+						"1",
+						"40",
+						"23",
+						"75"
+					]
+				},
+				"description": "GET api/temperature/sensor/:sensorid/:battery/:temperature/:humidity"
+			},
+			"response": []
+		}
+	]
+}
