@@ -8,9 +8,6 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -44,102 +41,23 @@
               <th scope="col">Temperature</th>
               <th scope="col">Humidity</th>
               <th scope="col">Action</th>
+              <th scope="col">Last Update</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Cozinha</th>
-              <td>
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 70%;"
-                    aria-valuenow="70"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  >
-                    70%
-                  </div>
-                </div>
-              </td>
-              <td>35 C</td>
-              <td>76%</td>
-              <td>
-                <button type="button" class="btn btn-primary">Open</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Sala de estar</th>
-              <td>
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 25%;"
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  >
-                    25%
-                  </div>
-                </div>
-              </td>
-              <td>24 C</td>
-              <td>99%</td>
-              <td>
-                <button type="button" class="btn btn-danger">Close</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Quarto</th>
-              <td>
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 51%;"
-                    aria-valuenow="51"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  >
-                    51%
-                  </div>
-                </div>
-              </td>
-              <td>12 C</td>
-              <td>47%</td>
-              <td>
-                <button type="button" class="btn btn-primary">Open</button>
-              </td>
-            </tr>
-          </tbody>
+          <tbody class="temperatureBody"></tbody>
         </table>
       </div>
     </div>
 
     <div class="response"></div>
 
-    <script>
-      $(document).ready(function() {
-        $.ajax({
-          url: "example.json",
-          success: function(result) {
-            $(".response").html(result);
-          }
-        });
-      });
-    </script>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -150,5 +68,59 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      var row = "";
+
+      $(function() {
+        onLoadgetAll();
+      });
+
+      function onLoadgetAll() {
+        row = "";
+        $.ajax({
+          url: "/api/temperature/getall",
+          success: function(result) {
+            result.forEach(buildRow);
+            $(".temperatureBody").html(row);
+          }
+        });
+      }
+
+      function buildRow(item) {
+        row +=
+          "<tr><th scope='row'>" +
+          item["name"] +
+          "</th><td><div class='progress'><div class='progress-bar' role='progressbar' style='width: 51% 'aria-valuenow='51' aria-valuemin='0' aria-valuemax='100'>" +
+          item["battery"] +
+          "</div></div></td><td>" +
+          item["temperature"] +
+          " C</td><td>" +
+          item["humidity"] +
+          "%</td><td><button type='button' class='btn btn-" +
+          (item["ventState"] ? "primary" : "success") +
+          "' onclick='openCloseBtn(" +
+          item["sensorId"] +
+          ")'>" +
+          (item["ventState"] ? "Open" : "Close") +
+          "</button></td><td>" +
+          formatDateTime(item["updatedAt"]) +
+          "</td></tr>";
+      }
+
+      function openCloseBtn(sensorId) {
+        $("button").attr("disabled", "disabled");
+        var url = "api/temperature/openclosevent/" + sensorId;
+        $.get(url, function(data) {});
+
+        onLoadgetAll();
+      }
+
+      function formatDateTime(datetime) {
+        var res1 = datetime.replace("T", " ");
+        var res2 = res1.substring(0, 19);
+        return res2;
+      }
+    </script>
   </body>
 </html>

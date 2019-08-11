@@ -53,13 +53,13 @@ router.get("/getall", (req, res) => {
     .catch(err => res.status(404).json({ error: "No temp found" }));
 });
 
-// @route   GET api/temperature/openclosevent/:sensorid/:openclose
-// @desc    Get sensor by sensorid
+// @route   GET api/temperature/openclosevent/:sensorid
+// @desc    Open or Close Vent
 // @access  Public
-router.get("/openclosevent/:sensorid/:openclose", (req, res) => {
+router.get("/openclosevent/:sensorid", (req, res) => {
   Temperature.findOne({ sensorId: req.params.sensorid })
     .then(temp => {
-      temp.ventState = req.params.openclose;
+      temp.ventState = !temp.ventState;
       temp.updatedAt = Date.now();
 
       temp.save().then(temperature => {

@@ -34,7 +34,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://{{url}}/api/temperature/sensor/33/55/77/88",
+					"raw": "http://{{url}}/api/temperature/openclosevent/33",
 					"protocol": "http",
 					"host": [
 						"{{url}}"
@@ -42,11 +42,8 @@
 					"path": [
 						"api",
 						"temperature",
-						"sensor",
-						"33",
-						"55",
-						"77",
-						"88"
+						"openclosevent",
+						"33"
 					]
 				},
 				"description": "GET api/temperature/openclosevent/:sensorid/:openclose"
