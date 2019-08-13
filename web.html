@@ -111,9 +111,9 @@
       function openCloseBtn(sensorId) {
         $("button").attr("disabled", "disabled");
         var url = "api/temperature/openclosevent/" + sensorId;
-        $.get(url, function(data) {});
-
-        onLoadgetAll();
+        $.get(url, function(data) {
+          onLoadgetAll();
+        });
       }
 
       function formatDateTime(datetime) {
