@@ -60,7 +60,6 @@ router.get("/openclosevent/:sensorid", (req, res) => {
   Temperature.findOne({ sensorId: req.params.sensorid })
     .then(temp => {
       temp.ventState = !temp.ventState;
-      temp.updatedAt = Date.now();
 
       temp.save().then(temperature => {
         res.json(temp);
